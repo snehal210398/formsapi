@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormsService, user } from './form.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   detailsForm!:FormGroup;
-  constructor(private fb: FormBuilder, private forms: FormsService) { }
+  userData! : user[];
+  constructor(private fb: FormBuilder, private form: FormsService) { }
 
   ngOnInit(): void {
     this.detailsForm = this.fb.group({
@@ -32,28 +35,26 @@ export class AppComponent {
       "role":this.detailsForm.controls['role'].value,
       "status_toggle": this.detailsForm.controls['status'].value,
     }
-    this.forms.createUser(data).subscribe((data)=>{
+    this.form.createUser(data).subscribe((data)=>{
       console.log(data);
     })
     this.detailsForm.reset();
   }
 
-  deleteUser(){
-    let id = 1;
-    this.forms.deleteUser(id).subscribe((data)=>{
+  deleteUser(id:any){
+    this.form.deleteUser(id).subscribe((data)=>{
       console.log(data);
     })
   }
 
-  updateUser(){
-    let id = 1, data = ""
-    this.forms.updateUser(id, data).subscribe((data)=>{
+  updateUser(id: any, data:any){
+    this.form.updateUser(id, data).subscribe((data)=>{
       console.log(data);
     })
   }
 
   getUsers(){
-    this.forms.getUsers().subscribe((data)=>{
+    this.form.getUsers().subscribe((data)=>{
       console.log(data);
     })
   }

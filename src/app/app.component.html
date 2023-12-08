@@ -1,9 +1,6 @@
 <div class="">
   <div class="container">
     <div class="row">
-      {{detailsForm.value | json}}
-      <div class="">{{detailsForm.controls["userName"].value}}</div>
-      {{detailsForm.get('userName')?.value}}
       <form class="row g-3" [formGroup]="detailsForm" (ngSubmit)="addDetails()">
         <div class="col-12">
           <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Your User Name"
@@ -44,11 +41,21 @@
           <button type="submit" class="btn btn-success me-3" [disabled]="detailsForm.invalid">Submit</button>
           <button type="reset" class="btn btn-primary me-3">Reset</button>
           <button type="button" class="btn btn-primary me-3" (click)="getUsers()">Get Users</button>
-          <button type="button" class="btn btn-primary me-3" (click)="updateUser()">Update User</button>
-          <button type="button" class="btn btn-primary me-3" (click)="deleteUser()">Delete User</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<table>
+  <tr *ngFor="let user of userData">
+    <th>{{user.u_id}}</th>
+    <th>{{user.user_name}}</th>
+    <th>{{user.e_mail}}</th>
+    <th>{{user.role}}</th>
+    <th>{{user.status_toggle}}</th>
+    <th><button type="button" class="btn btn-primary me-3" (click)="updateUser(user.u_id, user)">Update User</button></th>
+    <th><button type="button" class="btn btn-primary me-3" (click)="deleteUser(user.u_id)">Delete User</button></th>
+  </tr>
+</table>
 

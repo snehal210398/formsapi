@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export interface UserData { user_name: any; password: any; e_mail: any; role: any; status_toggle: any; }
+export interface UserData { user_name: any; password: any; e_mail: any; role: any; status_toggle: any; };
+export interface user { u_id: any; user_name: any; e_mail: any; role: any; status_toggle: any; };
 @Injectable({
   providedIn: 'root'
 })
