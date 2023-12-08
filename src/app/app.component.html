@@ -1,0 +1,54 @@
+<div class="">
+  <div class="container">
+    <div class="row">
+      {{detailsForm.value | json}}
+      <div class="">{{detailsForm.controls["userName"].value}}</div>
+      {{detailsForm.get('userName')?.value}}
+      <form class="row g-3" [formGroup]="detailsForm" (ngSubmit)="addDetails()">
+        <div class="col-12">
+          <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Your User Name"
+            formControlName="userName" />
+          <div *ngIf="detailsForm.get('userName')?.hasError('required') && !detailsForm.pristine">
+            <span class="text-danger">Name is Required</span>
+          </div>
+        </div>
+        <div class="col-12">
+          <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your Email"
+            formControlName="email" />
+          <div *ngIf="detailsForm.get('email')?.hasError('required') && !detailsForm.pristine">
+            <span class="text-danger">Email is Required</span>
+          </div>
+        </div>
+        <div class="col-12">
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Enter Password"
+            formControlName="password" />
+            <div *ngIf="detailsForm.get('password')?.hasError('required') && !detailsForm.pristine">
+              <span class="text-danger">Password is Required</span>
+            </div>
+        </div>
+        <div class="col-12">
+          <input type="text" class="form-control" id="role" placeholder="Role" formControlName="role" />
+          <div *ngIf="detailsForm.get('role')?.hasError('required') && !detailsForm.pristine">
+              <span class="text-danger">Role is Required</span>
+            </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck" formControlName="status" />
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-success me-3" [disabled]="detailsForm.invalid">Submit</button>
+          <button type="reset" class="btn btn-primary me-3">Reset</button>
+          <button type="button" class="btn btn-primary me-3" (click)="getUsers()">Get Users</button>
+          <button type="button" class="btn btn-primary me-3" (click)="updateUser()">Update User</button>
+          <button type="button" class="btn btn-primary me-3" (click)="deleteUser()">Delete User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
